@@ -4,7 +4,19 @@ import { imgs } from "../../assets/images/assets";
 import { Context } from "../../Context/Context";
 
 const Main = () => {
-    const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context);
+    const { 
+        onSent, 
+        recentPrompt, 
+        showResult, 
+        loading, 
+        resultData, 
+        setInput, 
+        input 
+    } = useContext(Context);
+
+    const handleCardClick = (promptText) => {
+        onSent();
+    };
 
     return (
         <div className='main'>
@@ -20,19 +32,19 @@ const Main = () => {
                             <p>How can I help you today?</p>
                         </div>
                         <div className="cards">
-                            <div className="card">
+                            <div className="card" onClick={() => handleCardClick("Suggest beautiful places to see on an upcoming road trip")}>
                                 <p>Suggest beautiful places to see on an upcoming road trip</p>
                                 <img src={imgs.compass_icon} alt="compass icon" />
                             </div>
-                            <div className="card">
+                            <div className="card" onClick={() => handleCardClick("Improve the readability of the following code")}>
                                 <p>Improve the readability of the following code</p>
                                 <img src={imgs.code_icon} alt="code icon" />
                             </div>
-                            <div className="card">
+                            <div className="card" onClick={() => handleCardClick("Briefly summarize this concept: urban planning")}>
                                 <p>Briefly summarize this concept: urban planning</p>
                                 <img src={imgs.bulb_icon} alt="bulb icon" />
                             </div>
-                            <div className="card">
+                            <div className="card" onClick={() => handleCardClick("Brainstorm team bonding activities for our work retreat")}>
                                 <p>Brainstorm team bonding activities for our work retreat</p>
                                 <img src={imgs.message_icon} alt="message icon" />
                             </div>
@@ -71,7 +83,7 @@ const Main = () => {
                         <div>
                             <img src={imgs.gallery_icon} alt="gallery icon" />
                             <img src={imgs.mic_icon} alt="mic icon" />
-                            <img onClick={() => onSent()} src={imgs.send_icon} alt="send icon" />
+                            {input ? <img onClick={() => onSent()} src={imgs.send_icon} alt="send icon" /> : null}
                         </div>
                     </div>
                     <p className="bottom-info">
